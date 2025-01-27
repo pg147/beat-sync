@@ -1,6 +1,7 @@
 // Dependencies
 import express from "express";
 import dotenv from "dotenv";
+import { clerkMiddleware } from "@clerk/express";
 
 // Routes
 import { userRoutes, authRoutes, adminRoutes, albumRoutes, songRoutes, statRoutes } from "./routes/index.js";
@@ -16,8 +17,11 @@ dotenv.config({
 const app = express();  // express app
 const PORT = process.env.PORT;   // defined PORT
 
-// for parsing request body into json format
+// Middleware for parsing request body into json format
 app.use(express.json());  
+
+// Middleware for using Clerk
+app.use(clerkMiddleware());  // this embeds auth property to req object (req.auth.*(methods))
 
 app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/auth', authRoutes);
