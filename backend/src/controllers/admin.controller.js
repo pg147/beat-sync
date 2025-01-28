@@ -5,6 +5,10 @@ import { Album } from "../models/album.model.js";
 // Cloudinary Functions
 import { deleteSongWithCover, uploadSongAudio, uploadCoverImage } from "../lib/cloudinary.js";
 
+const checkAdmin = async (_, res) => {
+    return res.status(200).json({ admin: true });
+}
+
 const createSong = async (req, res, next) => {
     const { title, artist, duration, albumId } = req.body;
 
@@ -151,4 +155,37 @@ const createAlbum = async (req, res, next) => {
     }
 }
 
-export { createSong, deleteSong, createAlbum };
+const deleteAlbum = async (req, res, next) => {
+    const { id: albumId } = req.params;  // fetching album id from params
+
+    try {
+        // Deleting all the songs of the album
+        const deleteSongs = await Song.deleteMany({ albumId: albumId });
+
+        // If songs don't get deleted
+        if (!deleteSongs) return res.status(400).json({
+            success: false,
+            message: "Error deleting songs for this album."
+        });
+
+        // Finding the album using album id and deleting it
+        const deleteAlbum = await Album.findByIdAndDelete({ _id: albumId });
+
+        // If deleting album fails
+        if (!deleteAlbum) return res.status(400).json({
+            success: false,
+            message: "Error deleting this album."
+        });
+
+        // If album is deleted successfully
+        return res.status(200).json({
+            success: true,
+            message: "Album deleted successfully!"
+        });
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+}
+
+export { checkAdmin, createSong, deleteSong, createAlbum, deleteAlbum };
