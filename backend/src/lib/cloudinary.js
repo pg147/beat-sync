@@ -25,7 +25,7 @@ const uploadSongAudio = async (audioPath) => {
     }
 }
 
-const uploadSongCoverImage = async (coverImagePath) => {
+const uploadCoverImage = async (coverImagePath) => {
     try {
         const coverImage = await cloudinary.uploader.upload(coverImagePath, {
             resource_type: "image"
@@ -60,4 +60,4 @@ const deleteSongWithCover = async (audioLink, coverImageLink) => {
     }
 }
 
-export { uploadSongAudio, uploadSongCoverImage, deleteSongWithCover };
+export { uploadSongAudio, uploadCoverImage, deleteSongWithCover };
