@@ -1,6 +1,6 @@
 import { User } from "../models/user.model.js";
 
-const signup = async(req, res) => {
+const signup = async(req, res, next) => {
     try {
         const { id, firstName, lastName, imageUrl } = req.body;
 
@@ -37,10 +37,7 @@ const signup = async(req, res) => {
         });
     } catch (error) {
         console.error("Error signing up: ", error.message);
-        res.status(500).json({
-            success: false,
-            message: "Internal server error."
-        });
+        next(error);
     }
 };
 
