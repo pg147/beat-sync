@@ -40,4 +40,24 @@ const uploadSongCoverImage = async (coverImagePath) => {
     }
 }
 
-export { uploadSongAudio, uploadSongCoverImage };
+const deleteSongWithCover = async (audioLink, coverImageLink) => {
+    try {
+        const deleteAudio = await cloudinary.uploader.destroy(audioLink, {
+            resource_type: "audio"
+        });
+
+        if (deleteAudio) {
+            await cloudinary.uploader.destroy(coverImageLink, {
+                resource_type: "video"
+            });
+
+            return true;
+        }
+
+        return false;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export { uploadSongAudio, uploadSongCoverImage, deleteSongWithCover };
