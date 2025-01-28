@@ -3,7 +3,7 @@ import { Song } from "../models/song.model.js";
 import { Album } from "../models/album.model.js";
 
 // Cloudinary Functions
-import { deleteSongWithCover, uploadSongAudio, uploadSongCoverImage } from "../lib/cloudinary.js";
+import { deleteSongWithCover, uploadSongAudio, uploadCoverImage } from "../lib/cloudinary.js";
 
 const createSong = async (req, res, next) => {
     const { title, artist, duration, albumId } = req.body;
@@ -22,7 +22,7 @@ const createSong = async (req, res, next) => {
 
     // Uploading on Cloudinary if local paths exist
     const audio = audioLocalPath ? await uploadSongAudio(audioLocalPath) : null;
-    const coverImage = coverImageLocalPath ? await uploadSongCoverImage(coverImageLocalPath) : null;
+    const coverImage = coverImageLocalPath ? await uploadCoverImage(coverImageLocalPath) : null;
 
     try {
         const song = await Song.create({
@@ -110,4 +110,45 @@ const deleteSong = async (req, res, next) => {
     }
 }
 
-export { createSong, deleteSong };
+const createAlbum = async (req, res, next) => {
+    const { title, artist, releaseYear } = req.body;
+
+    // Fetching Local path for cover image 
+    const coverImageLocalPath = req.file?.coverImage;
+
+    // If cover image wasn't provided
+    if (!coverImageLocalPath) return res.status(400).json({
+        success: false,
+        message: "Cover Image is required!"
+    });
+
+    // Uploading cover image on Cloudinary
+    const coverImage = coverImageLocalPath ? await uploadCoverImage(coverImageLocalPath) : null;
+
+    try {
+        const album = await Album.create({
+            title,
+            artist,
+            releaseYear,
+            coverImageURL: coverImage?.url || ""
+        });
+
+        // If album wasn't created successfully
+        if (!album) return res.status(400).json({
+            success: false,
+            message: "Error creating album!"
+        });
+
+        // If album created successfully 
+        return res.status(201).json({
+            success: true,
+            message: "Album created successfully",
+            album
+        })
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+}
+
+export { createSong, deleteSong, createAlbum };
