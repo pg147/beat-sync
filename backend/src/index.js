@@ -18,7 +18,7 @@ const app = express();  // express app
 const PORT = process.env.PORT;   // defined PORT
 
 // Middleware for parsing request body into json format
-app.use(express.json());  
+app.use(express.json());
 
 // Middleware for using Clerk
 app.use(clerkMiddleware());  // this embeds auth property to req object (req.auth.*(methods))
@@ -29,6 +29,14 @@ app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/songs', songRoutes);
 app.use('/api/v1/albums', albumRoutes);
 app.use('/api/v1/stats', statRoutes);
+
+// Middleware for Error handler
+app.use((err, _, res, _) => {
+    return res.status(500).json({
+        success: false,
+        message: process.env.NODE_ENV === 'production' ? 'Internal server error.' : err.message
+    });
+})
 
 connectDB()
     .then(() => {
