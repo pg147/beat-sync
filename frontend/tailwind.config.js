@@ -7,6 +7,12 @@ export default {
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			regular: "Gilroy-Regular",
+			medium: "Gilroy-Medium",
+			semibold: "Gilroy-Semibold",
+			bold: "Gilroy-Bold"
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
