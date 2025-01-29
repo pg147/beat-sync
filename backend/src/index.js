@@ -31,7 +31,7 @@ app.use('/api/v1/albums', albumRoutes);
 app.use('/api/v1/stats', statRoutes);
 
 // Middleware for Error handler
-app.use((err, _, res, _) => {
+app.use((err, _, res, __) => {
     return res.status(500).json({
         success: false,
         message: process.env.NODE_ENV === 'production' ? 'Internal server error.' : err.message

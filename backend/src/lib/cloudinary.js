@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const cloudinary = cloudinary.config({
+const cloudinaryConfig = cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
@@ -12,7 +12,7 @@ const cloudinary = cloudinary.config({
 
 const uploadSongAudio = async (audioPath) => {
     try {
-        const audio = cloudinary.uploader.upload(audioPath, {
+        const audio = cloudinaryConfig.uploader.upload(audioPath, {
             resource_type: "audio"
         });
 
@@ -27,7 +27,7 @@ const uploadSongAudio = async (audioPath) => {
 
 const uploadCoverImage = async (coverImagePath) => {
     try {
-        const coverImage = await cloudinary.uploader.upload(coverImagePath, {
+        const coverImage = await cloudinaryConfig.uploader.upload(coverImagePath, {
             resource_type: "image"
         });
 
@@ -42,7 +42,7 @@ const uploadCoverImage = async (coverImagePath) => {
 
 const deleteSongWithCover = async (audioLink, coverImageLink) => {
     try {
-        const deleteAudio = await cloudinary.uploader.destroy(audioLink, {
+        const deleteAudio = await cloudinaryConfig.uploader.destroy(audioLink, {
             resource_type: "audio"
         });
 

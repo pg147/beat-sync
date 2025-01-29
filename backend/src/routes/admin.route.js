@@ -5,7 +5,7 @@ import { checkAdmin, createAlbum, createSong, deleteAlbum, deleteSong } from "..
 
 // Middlewares
 import upload from "../middlewares/multer.middleware.js";
-import { protectRoute, requireAdmin } from "../middlewares/auth.middleware";
+import { protectRoute, requireAdmin } from "../middlewares/auth.middleware.js";
 
 const router = Router();  // admin router
 
