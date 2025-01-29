@@ -1,5 +1,6 @@
 // Dependencies
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import { clerkMiddleware } from "@clerk/express";
 
@@ -20,10 +21,16 @@ const PORT = process.env.PORT;   // defined PORT
 // Middleware for parsing request body into json format
 app.use(express.json());
 
+// Middleware for cors
+app.use(cors({
+    origin: process.env.ALLOWED_ORIGIN,
+    credentials: true
+}))
+
 // Middleware for using Clerk
 app.use(clerkMiddleware());  // this embeds auth property to req object (req.auth.*(methods))
 
-app.use('/api/v1/users', userRoutes);
+app.use('/api/v1', userRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/songs', songRoutes);

@@ -9,7 +9,7 @@ import { protectRoute } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.post('/callback', signup);
+router.post('/auth-callback', signup);
 router.get('/users', protectRoute, getAllUsers);
 
 export default router;
