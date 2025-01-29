@@ -64,3 +64,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+@font-face {
+  font-family: "Gilroy-Regular";
+  src: local("Gilroy-Regular"), 
+  url("./fonts/Gilroy-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gilroy-Medium";
+  src: local("Gilroy-Medium"),
+  url("./fonts/Gilroy-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gilroy-Semibold";
+  src: local("Gilroy-Semibold"),
+  url("./fonts/Gilroy-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Gilroy-Bold";
+  src: local("Gilroy-Bold"),
+  url("./fonts/Gilroy-Bold.ttf") format("truetype");
+}
