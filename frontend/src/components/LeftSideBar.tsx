@@ -73,7 +73,7 @@ export default function LeftSideBar() {
                             ))
                         ) : (
                             albums.map((album) => (
-                                <Link to={`/album/:${album._id}}`} key={album._id}>
+                                <Link to={`/album/${album._id}`} key={album._id}>
                                     <div className="flex gap-x-3">
                                         <img
                                             src={album.coverImageURL}
