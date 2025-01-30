@@ -37,8 +37,6 @@ export default function LeftSideBar() {
     useEffect(() => {
         fetchAlbums();
     }, [fetchAlbums])
-
-    console.log(albums);
     
     return (
         <div className="w-full flex flex-col gap-y-2 px-4 py-2">
@@ -73,7 +71,7 @@ export default function LeftSideBar() {
                             ))
                         ) : (
                             albums.map((album) => (
-                                <Link to={`/album/${album._id}`} key={album._id}>
+                                <Link to={`/albums/${album._id}`} key={album._id}>
                                     <div className="flex gap-x-3">
                                         <img
                                             src={album.coverImageURL}
