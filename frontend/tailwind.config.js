@@ -34,6 +34,7 @@ export default {
   			},
 			subheading: "#7A7A7A",
 			tile: "#171716",
+			tileLight: "#242422",
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
