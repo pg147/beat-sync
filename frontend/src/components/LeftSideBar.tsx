@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 
 // react-router-dom
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 
 // Icon Library
 import { Chatting01Icon, Home01Icon, LibrariesIcon } from "hugeicons-react"
@@ -33,11 +33,12 @@ const links = [
 export default function LeftSideBar() {
     const { albums, isLoading, fetchAlbums } = useMusicStore();
     const path = useLocation();
+    const { id } = useParams();
 
     useEffect(() => {
         fetchAlbums();
     }, [fetchAlbums])
-    
+
     return (
         <div className="w-full flex flex-col gap-y-2 px-4 py-2">
             {/* Widget */}
@@ -72,15 +73,15 @@ export default function LeftSideBar() {
                         ) : (
                             albums.map((album) => (
                                 <Link to={`/albums/${album._id}`} key={album._id}>
-                                    <div className="flex gap-x-3">
+                                    <div className={`flex items-center gap-x-3 rounded-2xl transition-all duration-300 ease-in-out ${id === album._id ? 'bg-tile p-3' : ''}`}>
                                         <img
                                             src={album.coverImageURL}
                                             alt={`album_${album.title}`}
                                             className="size-14 aspect-square rounded-lg flex-shrink-0 object-cover font-regular"
                                         />
                                         <div className="flex-1 min-w-0 hidden md:block">
-                                            <h1 className="font-medium truncate">{album.title}</h1>
-                                            <p className="font-regular text-sm text-subheading">Album • {album.artist}</p>
+                                            <h1 className={`font-medium truncate ${id === album._id ? 'text-primary' : ''}`}>{album.title}</h1>
+                                            <p className="font-medium text-sm text-subheading">Album • {album.artist}</p>
                                         </div>
                                     </div>
                                 </Link>
