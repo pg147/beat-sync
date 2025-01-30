@@ -33,7 +33,7 @@ export default {
   				DEFAULT: '#EB4D7D',
   			},
 			subheading: "#7A7A7A",
-			tile: "#121212",
+			tile: "#171716",
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
