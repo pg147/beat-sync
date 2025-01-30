@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { AuthCallback, Homepage } from "./pages";
+import { Album, AuthCallback, Homepage, Messages } from "./pages";
 import { AuthenticateWithRedirectCallback } from "@clerk/clerk-react";
 import MainLayout from "./layouts/MainLayout";
 
@@ -12,6 +12,8 @@ export default function App() {
 
         <Route element={<MainLayout />}>
           <Route path="/" element={<Homepage />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/albums/:id" element={<Album />} />
         </Route>
       </Routes>
     </>
