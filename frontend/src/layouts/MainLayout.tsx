@@ -4,15 +4,18 @@ import { Outlet } from "react-router-dom";
 // Shadcn Imports
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 
+// Components
+import { LeftSideBar } from "@/components";
+
 export default function MainLayout() {
   const isMobile = false;
 
   return (
     <div className="w-full h-screen flex flex-col">
-      <ResizablePanelGroup direction="horizontal" className="flex-1 flex h-full overflow-hidden p-2">
+      <ResizablePanelGroup direction="horizontal" className="flex-1 flex h-full overflow-hidden">
         {/* Left Sidebar */}
-        <ResizablePanel defaultSize={20} minSize={isMobile ? 0 : 10} maxSize={30}>
-          Left Side bar
+        <ResizablePanel defaultSize={20} minSize={isMobile ? 0 : 10} maxSize={20}>
+          <LeftSideBar />
         </ResizablePanel>
 
         {/* Control for resizing */}
@@ -27,7 +30,7 @@ export default function MainLayout() {
         <ResizableHandle />
 
         {/* Friends Activity */}
-        <ResizablePanel defaultSize={20} minSize={0} maxSize={25} collapsedSize={0}> 
+        <ResizablePanel defaultSize={20} minSize={0} maxSize={20} collapsedSize={0}> 
           Friends Activity
         </ResizablePanel>
       </ResizablePanelGroup>
