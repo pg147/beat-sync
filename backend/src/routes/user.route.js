@@ -10,6 +10,6 @@ import { protectRoute } from "../middlewares/auth.middleware.js";
 const router = Router();
 
 router.post('/auth-callback', signup);
-router.get('/users', protectRoute, getAllUsers);
+router.get('/', protectRoute, getAllUsers);
 
 export default router;

@@ -8,6 +8,6 @@ import { protectRoute, requireAdmin } from "../middlewares/auth.middleware.js"
 
 const router = Router();
 
-router.get("/stats", protectRoute, requireAdmin, getAllStats);
+router.get("/", protectRoute, requireAdmin, getAllStats);
 
 export default router;
