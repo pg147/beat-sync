@@ -6,8 +6,8 @@ export interface Song {
   audioURL: string;
   coverImageURL: string;
   duration: number;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Album {
@@ -15,7 +15,7 @@ export interface Album {
   title: string;
   artist: string;
   coverImageURL: string;
-  releaseYear: Date;
+  releaseYear: string;
   songs: Array<Song>;
 }
 
@@ -25,7 +25,7 @@ export interface MusicStore {
   isLoading: boolean;
   isAlbumLoading: boolean;
   error: string | null;
-  currentAlbum: object | null;
+  currentAlbum: Album | null;
   fetchAlbums: () => Promise<void>;
   fetchCurrentAlbum: (albumId: string | undefined) => Promise<void>;
 }

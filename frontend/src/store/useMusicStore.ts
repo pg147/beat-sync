@@ -30,10 +30,10 @@ export const useMusicStore = create<MusicStore>((set) => ({
     set({ isAlbumLoading: true, error: null });
 
     try {
-      const album = await axiosInstance.get(`/albums/${albumId}`);
+      const response = await axiosInstance.get(`/albums/${albumId}`);
 
-      if (album) {
-        set({ currentAlbum: album });
+      if (response) {
+        set({ currentAlbum: response.data.album });
       }
     } catch (error: any) {
       set({ error: error.response.data.message });
