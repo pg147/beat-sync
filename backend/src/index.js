@@ -30,7 +30,7 @@ app.use(cors({
 // Middleware for using Clerk
 app.use(clerkMiddleware());  // this embeds auth property to req object (req.auth.*(methods))
 
-app.use('/api/v1', userRoutes);
+app.use('/api/v1/users', userRoutes);
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/admin', adminRoutes);
 app.use('/api/v1/songs', songRoutes);
