@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { Link, useLocation, useParams } from "react-router-dom"
 
 // Icon Library
-import { Chatting01Icon, Home01Icon, LibrariesIcon } from "hugeicons-react"
+import { HeartCheckIcon, Home01Icon, LibrariesIcon } from "hugeicons-react"
 
 // Global state store - Music
 import { useMusicStore } from "@/store/useMusicStore";
@@ -24,9 +24,9 @@ const links = [
         link: '/'
     },
     {
-        label: 'Messages',
-        icon: Chatting01Icon,
-        link: '/messages'
+        label: 'Favourites',
+        icon: HeartCheckIcon,
+        link: '/favourites'
     },
 ]
 
