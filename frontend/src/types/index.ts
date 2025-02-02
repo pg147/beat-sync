@@ -31,7 +31,14 @@ export interface MusicStore {
 }
 
 export interface UserStore {
-  users: Array<any>,
-  isLoading: boolean,
-  fetchUsers: () => Promise<void>
+  users: Array<any>;
+  isLoading: boolean;
+  fetchUsers: () => Promise<void>;
+}
+
+export interface AuthStore {
+  isAdmin: boolean;
+  isLoading: boolean;
+  checkAdminStatus: () => Promise<void>;
+  reset: () => void;
 }
