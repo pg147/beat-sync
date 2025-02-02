@@ -7,6 +7,9 @@ import { useAuth } from "@clerk/clerk-react"
 // Axios Instance
 import axiosInstance from "@/lib/axios";
 
+// Auth Store
+import { useAuthStore } from "@/store/useAuthStore";
+
 // Shared imports
 import Loader from "@/shared/Loader";
 
@@ -22,6 +25,7 @@ const updateAPIToken = (token: string | null) => {
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
     const { getToken } = useAuth();
+    const { checkAdminStatus } = useAuthStore();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -29,6 +33,10 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
             try {
                 const token = await getToken();
                 updateAPIToken(token);
+
+                if (token) {
+                    await checkAdminStatus();
+                }
             } catch (error: any) {
                 console.error("Error in auth provider : ", error.message);
             } finally {
@@ -37,7 +45,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
 
         initAuth();
-    }, [getToken]);
+    }, [getToken, checkAdminStatus]);
 
     if (loading) return <Loader />
 
