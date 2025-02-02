@@ -21,6 +21,9 @@ export interface Album {
 
 export interface MusicStore {
   songs: Array<Song>;
+  featuredSongs: Array<Song>;
+  trendingSongs: Array<Song>;
+  madeForYouSongs: Array<Song>;
   albums: Array<Album>;
   isLoading: boolean;
   isAlbumLoading: boolean;
@@ -28,6 +31,9 @@ export interface MusicStore {
   currentAlbum: Album | null;
   fetchAlbums: () => Promise<void>;
   fetchCurrentAlbum: (albumId: string | undefined) => Promise<void>;
+  fetchFeaturedSongs: () => Promise<void>;
+  fetchTrendingSongs: () => Promise<void>;
+  fetchMadeForYouSongs: () => Promise<void>;
 }
 
 export interface UserStore {
