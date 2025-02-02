@@ -14,7 +14,7 @@ export default function SignInOAuthButton() {
   }
 
   return (
-    <div onClick={signInWithGoogle} className="size-fit cursor-pointer flex items-center gap-x-3 bg-tileLight lg:hover:bg-tileLight/60 rounded-xl px-6 py-3 mr-2 font-medium transition-all duration-100 ease-in-out">
+    <div onClick={signInWithGoogle} className="size-fit cursor-pointer flex items-center gap-x-3 bg-tileLight lg:hover:bg-tileLight/60 rounded-xl px-6 py-3 font-medium transition-all duration-100 ease-in-out">
       <img src="/google-icon.svg" className="size-5" />
       <p>Continue with Google </p>
     </div>
