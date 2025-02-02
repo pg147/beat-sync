@@ -20,7 +20,7 @@ export default function Topbar() {
     const { isAdmin } = useAuthStore();
 
     return (
-        <div className="sticky top-0 flex bg-tile backdrop-blur-lg items-center justify-between pl-6 pr-2.5 py-2.5">
+        <div className="sticky top-0 z-[10] flex bg-tile backdrop-blur-lg items-center justify-between pl-6 pr-2.5 py-2.5">
             <Brand />
 
             <div className="size-fit flex items-center gap-x-2.5">
