@@ -1,12 +1,8 @@
 // React Imports
 import { useEffect } from "react";
 
-// Clerk Imports
-import { useUser } from "@clerk/clerk-react"
-
 // Music Store
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
-import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 
 // Music Store
@@ -16,7 +12,6 @@ import { useMusicStore } from "@/store/useMusicStore";
 import { Play } from "lucide-react";
 
 export default function FeaturedSongs() {
-    const { user } = useUser();
     const { isLoading, featuredSongs, fetchFeaturedSongs } = useMusicStore();
 
     useEffect(() => {
@@ -27,13 +22,9 @@ export default function FeaturedSongs() {
 
     return (
         <div className="w-full">
-            <h1 className="text-xl font-semibold">Hi <span className="text-primary">{user?.firstName} !</span></h1>
-
-            <Separator className="my-6" />
-
             <div className="flex flex-col gap-y-4">
                 <h1 className="font-semibold text-xl">Featured Songs</h1>
-                <ScrollArea className="w-full pb-7">
+                <ScrollArea className="w-full">
                     <div className="flex w-max gap-x-5">
                         {featuredSongs.map((song) => (
                             <div key={song._id} className="group cursor-pointer pb-3 flex flex-col gap-y-2.5 lg:hover:bg-tileLight/50 rounded-xl">
@@ -50,7 +41,7 @@ export default function FeaturedSongs() {
                             </div>
                         ))}
                     </div>
-                    <ScrollBar orientation="horizontal" />
+                    <ScrollBar className="hidden" orientation="horizontal" />
                 </ScrollArea>
             </div>
         </div>
