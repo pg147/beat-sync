@@ -29,3 +29,9 @@ export interface MusicStore {
   fetchAlbums: () => Promise<void>;
   fetchCurrentAlbum: (albumId: string | undefined) => Promise<void>;
 }
+
+export interface UserStore {
+  users: Array<any>,
+  isLoading: boolean,
+  fetchUsers: () => Promise<void>
+}
