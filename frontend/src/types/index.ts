@@ -48,3 +48,17 @@ export interface AuthStore {
   checkAdminStatus: () => Promise<void>;
   reset: () => void;
 }
+
+export interface PlayerStore {
+  currentSong: Song | null;
+  isPlaying: boolean;
+  queue: Array<Song>;
+  currentIndex: number;
+
+  initializeQueue: (songs: Array<Song>) => void;
+  playAlbum: (songs: Array<Song>, startIndex?: number | undefined) => void;
+  setCurrentSong: (song: Song | null) => void;
+  togglePlay: () => void;
+  playNext: () => void;
+  playPrevious: () => void;
+}
