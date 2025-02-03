@@ -29,8 +29,6 @@ export default function FriendsActivity() {
     if (user) fetchUsers();
   }, [fetchUsers, user])
 
-  console.log(users);
-
   if (!user) return <div className="w-full flex flex-col gap-y-6 px-9 mt-7">
     {/* Heading */}
     <div className="flex items-center gap-x-4 mx-auto">
