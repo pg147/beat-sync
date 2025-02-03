@@ -1,49 +1,60 @@
 // React Imports
 import { useEffect } from "react";
 
-// Music Store
+// Shadcn Imports
 import { ScrollArea, ScrollBar } from "./ui/scroll-area";
-import { Button } from "./ui/button";
 
-// Music Store
+// Global Store
 import { useMusicStore } from "@/store/useMusicStore";
+import { usePlayerStore } from "@/store/usePlayerStore";
+
+// Components
+import AudioPlayer from "./AudioPlayer";
+import PlayButton from "./PlayButton";
 
 // Icon Library
-import { Play } from "lucide-react";
 import { FavouriteIcon } from "hugeicons-react";
+
+// Skeleton
+import SongsSkeleton from "./skeletons/SongsSkeleton";
 
 export default function MadeForYouSongs() {
     const { isLoading, madeForYouSongs, fetchMadeForYouSongs } = useMusicStore();
+    const { currentSong } = usePlayerStore();
 
     useEffect(() => {
         fetchMadeForYouSongs();
     }, [fetchMadeForYouSongs])
 
-    if (isLoading) return
+    if (isLoading) return <div className="w-full">
+        <SongsSkeleton />
+    </div>
 
     return (
         <div className="w-full">
+            <AudioPlayer />
             <div className="flex flex-col gap-y-4">
                 <div className="flex items-center gap-x-2.5">
                     <h1 className="font-semibold text-xl">Made For <span className="text-primary">You</span></h1>
-                    <FavouriteIcon className="size-6 text-primary" fill="#EB4D7D"/>
+                    <FavouriteIcon className="size-6 text-primary" fill="#EB4D7D" />
                 </div>
                 <ScrollArea className="w-full">
                     <div className="flex w-max gap-x-5">
-                        {madeForYouSongs.map((song) => (
-                            <div key={song._id} className="group cursor-pointer pb-3 flex flex-col gap-y-2.5 lg:hover:bg-tileLight/50 rounded-xl">
-                                <img src={song.coverImageURL} alt={song.title} className="size-56 aspect-square object-cover rounded-xl" />
-                                <div className="flex items-center w-full justify-between lg:group-hover:px-4 transition-all duration-300 ease-in-out ">
-                                    <div className="flex flex-col font-medium">
-                                        <h1>{song.title}</h1>
-                                        <p className="text-subheading">{song.artist}</p>
+                        {madeForYouSongs.map((song) => {
+                            const isCurrentSong = currentSong?._id === song._id;
+                            return (
+                                <div key={song._id} className={`group cursor-pointer pb-3 flex flex-col gap-y-2.5 ${isCurrentSong ? 'bg-tileLight/50' : 'lg:hover:bg-tileLight/50'} rounded-xl`}>
+                                    <img src={song.coverImageURL} alt={song.title} className="size-56 aspect-square object-cover rounded-xl" />
+                                    <div className={`flex items-center w-full justify-between transition-all duration-300 ease-in-out ${isCurrentSong ? 'px-4' : 'lg:group-hover:px-4'}`}>
+                                        <div className="flex flex-col font-medium">
+                                            <h1>{song.title}</h1>
+                                            <p className="text-subheading">{song.artist}</p>
+                                        </div>
+                                        <PlayButton song={song} />
                                     </div>
-                                    <Button className="size-fit rounded-full bg-primary hidden lg:group-hover:block lg:hover:bg-primary p-3 transition-all duration-300 ease-in-out">
-                                        <Play className="size-4" fill="#FFFFFF" />
-                                    </Button>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                     <ScrollBar className="hidden" orientation="horizontal" />
                 </ScrollArea>
