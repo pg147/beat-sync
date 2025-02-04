@@ -56,13 +56,13 @@ export default function PlaybackControls() {
     }
 
     return (
-        <footer className="w-full bg-tile/70 py-4 px-10">
-            <div className="flex justify-between items-center h-full max-w-[1800px] mx-auto">
+        <footer className="w-full bg-tile/70 py-4 px-4 md:px-10">
+            <div className="flex justify-between items-center h-full sm:w-full lg:max-w-[1800px] mx-auto">
                 {/* Song details */}
                 <div className="flex items-center gap-x-3 w-[30%]">
                     {currentSong && <>
-                        <img src={currentSong?.coverImageURL} alt={currentSong?.title} className="size-16 rounded-xl" />
-                        <div className="flex flex-col">
+                        <img src={currentSong?.coverImageURL} alt={currentSong?.title} className="size-20 md:size-16 rounded-xl" />
+                        <div className="hidden md:flex flex-col">
                             <h1 className="font-medium">{currentSong?.title}</h1>
                             <p className="text-subheading font-medium">{currentSong?.artist}</p>
                         </div>
@@ -73,17 +73,17 @@ export default function PlaybackControls() {
                 {/* Control Bar */}
                 <div className="flex flex-col gap-y-2 items-center flex-1 max-w-full sm:w-[45%]">
                     {/* Controls */}
-                    <div className="flex items-center gap-x-6">
+                    <div className="flex items-center gap-x-3 md:gap-x-6">
                         <Button
                             disabled={!currentSong}
-                            className="size-fit rounded-full p-3 bg-transparent lg:hover:bg-tileLight"
+                            className="size-fit rounded-full p-3 bg-transparent sm:focus:bg-transparent lg:hover:bg-tileLight"
                         >
                             <Shuffle className="h-5 w-5" />
                         </Button>
                         <Button
                             onClick={playPrevious}
                             disabled={!currentSong}
-                            className="size-fit rounded-full p-3 bg-transparent lg:hover:bg-tileLight"
+                            className="size-fit rounded-full p-3 bg-transparent sm:focus:bg-transparent lg:hover:bg-tileLight"
                         >
                             <Previous className="h-5 w-5" />
                         </Button>
@@ -97,21 +97,21 @@ export default function PlaybackControls() {
                         <Button
                             onClick={playNext}
                             disabled={!currentSong}
-                            className="size-fit rounded-full p-3 bg-transparent lg:hover:bg-tileLight"
+                            className="size-fit rounded-full p-3 bg-transparent sm:focus:bg-transparent lg:hover:bg-tileLight"
                         >
                             <Next className="h-5 w-5" />
                         </Button>
                         <Button
                             disabled={!currentSong}
-                            className="size-fit rounded-full p-3 bg-transparent lg:hover:bg-tileLight"
+                            className="size-fit rounded-full p-3 bg-transparent sm:focus:bg-transparent lg:hover:bg-tileLight"
                         >
                             <RepeateMusic className="h-5 w-5" />
                         </Button>
                     </div>
 
                     {/* Seek Bar */}
-                    <div className="hidden sm:flex items-center gap-x-2 font-medium w-full">
-                        <h1>{formatDuration(currentTime)}</h1>
+                    <div className="flex items-center gap-x-2 font-medium w-full">
+                        <h1 className="text-sm md:text-base">{formatDuration(currentTime)}</h1>
                         <Slider
                             value={[currentTime]}
                             max={duration || 30}
@@ -119,11 +119,11 @@ export default function PlaybackControls() {
                             className="w-full lg:hover:cursor-grab lg:active:cursor-grabbing"
                             onValueChange={handleSeek}
                         />
-                        <h1>{formatDuration(currentSong?.duration || 30)}</h1>
+                        <h1 className="text-sm md:text-base">{formatDuration(currentSong?.duration || 30)}</h1>
                     </div>
                 </div>
 
-                <div className="w-[30%] hidden sm:flex gap-x-3 items-center justify-center">
+                <div className="w-[30%] hidden md:flex gap-x-3 items-center justify-center">
                     <Button className="size-fit rounded-full p-3 bg-transparent lg:hover:bg-tileLight">
                         <MicVocal strokeWidth={1.75} className="size-5" />
                     </Button>
