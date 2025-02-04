@@ -46,7 +46,7 @@ export default function LeftSideBar() {
                 {
                     links.map((item) => (
                         <Link key={item.label} to={item.link}>
-                            <div className={`cursor-pointer w-full flex items-center gap-x-3.5 rounded-2xl px-5 py-3 transition-all duration-200 ease-in-out ${path.pathname === item.link ? 'bg-tile' : ''}`}>
+                            <div className={`cursor-pointer w-full flex items-center justify-center md:justify-normal gap-x-3.5 rounded-2xl px-3 py-3 md:px-5 md:py-3 transition-all duration-200 ease-in-out ${path.pathname === item.link ? 'bg-tile' : ''}`}>
                                 <item.icon className={`size-5 ${path.pathname === item.link ? 'text-primary' : ''}`} />
                                 <p className="font-medium hidden md:inline">{item.label}</p>
                             </div>
@@ -61,7 +61,7 @@ export default function LeftSideBar() {
             <div className="px-5">
                 <div className="flex items-center w-full gap-x-3">
                     <LibrariesIcon className="size-6" />
-                    <p className="font-medium">Playlist</p>
+                    <p className="font-medium hidden md:inline">Playlist</p>
                 </div>
 
                 <ScrollArea className="h-[calc(100vh-250px)] mt-6 w-full">
