@@ -1,10 +1,19 @@
+// React
+import { useEffect, useRef, useState } from "react";
+
+// Shadcn Components
+import { Slider } from "./ui/slider";
+import { Button } from "./ui/button";
+
+// Utils
+import { cn, formatDuration } from "@/lib/utils";
+
+// Global State
 import { usePlayerStore } from "@/store/usePlayerStore"
+
+// Icons Library
 import { Next, Previous, RepeateMusic, Shuffle } from "iconsax-react";
 import { Airplay, ListMusic, MicVocal, Pause, PlayIcon, Volume1 } from "lucide-react";
-import { Slider } from "./ui/slider";
-import { cn, formatDuration } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
-import { Button } from "./ui/button";
 
 export default function PlaybackControls() {
     const { isPlaying, currentSong, playNext, playPrevious, togglePlay } = usePlayerStore();
@@ -129,7 +138,7 @@ export default function PlaybackControls() {
                             <Volume1 strokeWidth={1.75} className="size-5 text-primary" />
                         </div>
                         <Slider
-                            defaultValue={[volume]}
+                            value={[volume]}
                             max={100}
                             step={1}
                             onValueChange={(value) => {
