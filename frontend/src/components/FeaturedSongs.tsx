@@ -31,7 +31,7 @@ export default function FeaturedSongs() {
         <div className="w-full">
             <AudioPlayer />
             <div className="flex flex-col gap-y-4">
-                <h1 className="font-semibold text-xl">Featured Songs</h1>
+                <h1 className="font-semibold text-lg md:text-xl">Featured Songs</h1>
                 <ScrollArea className="w-full">
                     <div className="flex w-max gap-x-5">
                         {featuredSongs.map((song) => {

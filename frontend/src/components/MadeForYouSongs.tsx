@@ -35,8 +35,8 @@ export default function MadeForYouSongs() {
             <AudioPlayer />
             <div className="flex flex-col gap-y-4">
                 <div className="flex items-center gap-x-2.5">
-                    <h1 className="font-semibold text-xl">Made For <span className="text-primary">You</span></h1>
-                    <FavouriteIcon className="size-6 text-primary" fill="#EB4D7D" />
+                    <h1 className="font-semibold text-lg md:text-xl">Made For <span className="text-primary">You</span></h1>
+                    <FavouriteIcon className="size-5 md:size-6 text-primary" fill="#EB4D7D" />
                 </div>
                 <ScrollArea className="w-full">
                     <div className="flex w-max gap-x-5">
