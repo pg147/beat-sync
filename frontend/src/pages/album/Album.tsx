@@ -51,7 +51,7 @@ export default function Album() {
     if (isAlbumLoading) return <AlbumSkeleton />
 
     return (
-        <div className="w-full h-full">
+        <div className="w-full h-fit md:h-full">
             <AudioPlayer />
             <ScrollArea className="h-full">
                 <div className="relative min-h-full">
@@ -59,14 +59,14 @@ export default function Album() {
                     <div className="h-screen w-full absolute inset-0 bg-gradient-to-b from-primary/20 via-transparent pointer-events-none" aria-hidden={true}>
                     </div>
 
-                    <div className="p-12">
+                    <div className="p-5 md:p-12">
                         {/* Info Header */}
-                        <div className="h-fit w-full flex items-end gap-x-6">
-                            <img src={currentAlbum?.coverImageURL} alt={`${currentAlbum}_cover`} className="size-60 aspect-square rounded-xl" />
+                        <div className="h-fit w-full flex items-end gap-x-4 md:gap-x-6">
+                            <img src={currentAlbum?.coverImageURL} alt={`${currentAlbum}_cover`} className="size-28 md:size-60 aspect-square rounded-xl" />
                             <div>
-                                <label className="font-medium text-subheading">Album</label>
-                                <h1 className="font-semibold text-6xl mt-3">{currentAlbum?.title}</h1>
-                                <p className="font-medium mt-2"><span className="text-primary">{currentAlbum?.artist}</span> • {currentAlbum?.songs.length + " " + "songs"} • {currentAlbum?.releaseYear}</p>
+                                <label className="text-sm md:text-base font-medium text-subheading">Album</label>
+                                <h1 className="font-medium md:font-semibold text-2xl md:text-6xl mt-1 md:mt-3">{currentAlbum?.title}</h1>
+                                <p className="text-sm md:text-base font-medium mt-1 md:mt-2"><span className="text-primary">{currentAlbum?.artist}</span> • {currentAlbum?.songs.length + " " + "songs"} • {currentAlbum?.releaseYear}</p>
                             </div>
                         </div>
 
@@ -76,18 +76,18 @@ export default function Album() {
 
                         <div className="mt-9">
                             {/* Table Headers */}
-                            <div className="grid grid-cols-12 px-6 py-3 font-medium text-subheading">
+                            <div className="grid grid-cols-8 md:grid-cols-12 md:px-6 py-3 font-medium text-subheading">
                                 <div className="col-span-1">
                                     <p>#</p>
                                 </div>
-                                <div className="col-span-7">
+                                <div className="col-span-5 md:col-span-7">
                                     <p>Title</p>
                                 </div>
-                                <div className="col-span-2">
+                                <div className="hidden md:block col-span-1 md:col-span-2">
                                     <p>Date of Release</p>
                                 </div>
-                                <div className="col-span-2">
-                                    <p className="text-center">Duration</p>
+                                <div className="col-span-2 md:col-span-2 place-items-end md:place-items-start">
+                                    <p className="md:text-center">Duration</p>
                                 </div>
                             </div>
 
@@ -96,24 +96,24 @@ export default function Album() {
                                     const isCurrentSong = currentSong?._id === song._id;
                                     
                                     return (
-                                        <div onClick={() => handlePlaySong(index)} key={song._id} className="cursor-pointer grid grid-cols-12 items-center font-medium group lg:hover:bg-tile/60 px-6 py-3 rounded-xl">
+                                        <div onClick={() => handlePlaySong(index)} key={song._id} className="cursor-pointer grid grid-cols-8 md:grid-cols-12 md:px-6 py-3 items-center font-medium group lg:hover:bg-tile/60 rounded-xl">
                                             <div className="col-span-1">
                                                 {isCurrentSong ? <MusicNote03Icon className="size-5 text-primary" /> : <>
                                                     <p className="block group-hover:hidden">{index + 1}</p>
                                                     <Play className="text-primary size-5 hidden group-hover:block" fill="#EB4D7D" />
                                                 </>}
                                             </div>
-                                            <div className="col-span-7 flex items-center gap-x-4">
+                                            <div className="col-span-5 md:col-span-7 flex items-center gap-x-4">
                                                 <img src={song.coverImageURL} alt={song.title} className="size-12 aspect-square rounded-md" />
                                                 <div>
                                                     <h1>{song.title}</h1>
                                                     <p className="text-subheading">{song.artist}</p>
                                                 </div>
                                             </div>
-                                            <div className="col-span-2">
+                                            <div className="hidden md:block col-span-1 md:col-span-2">
                                                 <p>{song.createdAt.split("T")[0]}</p>
                                             </div>
-                                            <div className="col-span-2">
+                                            <div className="col-span-2 md:col-span-2 place-items-center md:place-items-start">
                                                 <p className="text-center">{formatDuration(song.duration)}</p>
                                             </div>
                                         </div>
