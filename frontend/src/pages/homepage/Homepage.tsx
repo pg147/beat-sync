@@ -14,7 +14,7 @@ export default function Homepage() {
         <Separator className="my-6" />
       </div>}
 
-      <div className="font-medium flex flex-col gap-y-6 my-7 w-full px-9">
+      <div className="font-medium flex flex-col gap-y-6 mt-7 mb-36 w-full px-9">
         <FeaturedSongs />
         <TrendingSongs />
         <MadeForYouSongs />
