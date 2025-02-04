@@ -5,5 +5,6 @@ import FriendsActivity from "./FriendsActivity";
 import FeaturedSongs from "./FeaturedSongs";
 import TrendingSongs from "./TrendingSongs";
 import MadeForYouSongs from "./MadeForYouSongs";
+import PlaybackControls from "./PlaybackControls";
 
-export { Topbar, SignInOAuthButton, LeftSideBar, FriendsActivity, FeaturedSongs, TrendingSongs, MadeForYouSongs };
+export { Topbar, SignInOAuthButton, LeftSideBar, FriendsActivity, FeaturedSongs, TrendingSongs, MadeForYouSongs, PlaybackControls };
