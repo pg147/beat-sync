@@ -58,17 +58,29 @@ export default function PlaybackControls() {
     return (
         <footer className="w-full bg-tile/70 py-4 px-4 md:px-10">
             <div className="flex justify-between items-center h-full sm:w-full lg:max-w-[1800px] mx-auto">
+                {/* For Mobile View */}
+                {(window.innerWidth < 768 && currentSong) && <>
+                    {/* Song details */}
+                    <div className="flex items-center gap-x-3 w-[30%]">
+                        <img src={currentSong?.coverImageURL} alt={currentSong?.title} className="size-20 md:size-16 rounded-xl" />
+                        <div className="hidden md:flex flex-col">
+                            <h1 className="font-medium">{currentSong?.title}</h1>
+                            <p className="text-subheading font-medium">{currentSong?.artist}</p>
+                        </div>
+                    </div>
+                </>}
+
+                {/* For Web view */}
                 {/* Song details */}
-                <div className="flex items-center gap-x-3 w-[30%]">
+                {window.innerWidth > 768 && <div className="flex items-center gap-x-3 w-[30%]">
                     {currentSong && <>
                         <img src={currentSong?.coverImageURL} alt={currentSong?.title} className="size-20 md:size-16 rounded-xl" />
                         <div className="hidden md:flex flex-col">
                             <h1 className="font-medium">{currentSong?.title}</h1>
                             <p className="text-subheading font-medium">{currentSong?.artist}</p>
                         </div>
-                    </>
-                    }
-                </div>
+                    </>}
+                </div>}
 
                 {/* Control Bar */}
                 <div className="flex flex-col gap-y-2 items-center flex-1 max-w-full sm:w-[45%]">
@@ -142,16 +154,16 @@ export default function PlaybackControls() {
                             max={100}
                             step={1}
                             onValueChange={(value) => {
-								setVolume(value[0]);
-								if (audioRef.current) {
-									audioRef.current.volume = value[0] / 100;
-								}
-							}}
+                                setVolume(value[0]);
+                                if (audioRef.current) {
+                                    audioRef.current.volume = value[0] / 100;
+                                }
+                            }}
                             className={cn("w-24", "lg:hover:cursor-grab lg:active:cursor-grabbing")}
                         />
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer >
     )
 }
