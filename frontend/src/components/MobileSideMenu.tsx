@@ -1,8 +1,8 @@
 // React imports
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 // React Router DOM
-import { useLocation, useParams } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 
 // Global Store
 import { useMusicStore } from "@/store/useMusicStore"
@@ -21,6 +21,8 @@ import { HeartCheckIcon, Home01Icon, LibrariesIcon, Menu01Icon } from "hugeicons
 
 // Skeleton
 import PlaylistSkeleton from "./skeletons/PlaylistSkeleton"
+import { SignedIn, SignOutButton } from "@clerk/clerk-react"
+import { Button } from "./ui/button"
 
 const links = [
     {
@@ -37,15 +39,22 @@ const links = [
 
 export default function MobileSideMenu() {
     const { albums, isLoading, fetchAlbums } = useMusicStore();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const path = useLocation();
     const { id } = useParams();
+
+    const handleMenuOpen = () => {
+        setTimeout(() => {
+            setIsMenuOpen(!isMenuOpen);
+        }, 300);
+    }
 
     useEffect(() => {
         fetchAlbums();
     }, [fetchAlbums])
 
     return (
-        <Sheet>
+        <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
                 <div>
                     <Menu01Icon className="size-6 text-primary" />
@@ -57,12 +66,12 @@ export default function MobileSideMenu() {
                     <div className="flex flex-col gap-y-1 mt-4">
                         {
                             links.map((item) => (
-                                <a key={item.label} href={item.link}>
-                                    <div className={`cursor-pointer w-full flex items-center gap-x-3.5 rounded-2xl px-4 py-3 md:px-5 md:py-3 transition-all duration-200 ease-in-out ${path.pathname === item.link ? 'bg-tile' : ''}`}>
+                                <Link onClick={handleMenuOpen} key={item.label} to={item.link}>
+                                    <div className={`cursor-pointer w-full flex items-center gap-x-3.5 rounded-2xl py-3 transition-all duration-200 ease-in-out ${path.pathname === item.link ? 'bg-tile px-4' : ''}`}>
                                         <item.icon className={`size-5 ${path.pathname === item.link ? 'text-primary' : ''}`} />
                                         <p className="font-medium">{item.label}</p>
                                     </div>
-                                </a>
+                                </Link>
                             ))
                         }
                     </div>
@@ -70,13 +79,13 @@ export default function MobileSideMenu() {
                     <Separator className="w-full my-4" />
 
                     {/* Playlists */}
-                    <div className="px-3">
+                    <div>
                         <div className="flex items-center w-full gap-x-3">
                             <LibrariesIcon className="size-6" />
                             <p className="font-medium">Playlist</p>
                         </div>
 
-                        <ScrollArea className="h-[calc(100vh-250px)] mt-6 w-full">
+                        <ScrollArea className="h-[calc(100vh-400px)] mt-6 w-full">
                             <div className="flex flex-col gap-y-4">
                                 {isLoading ? (
                                     Array.from({ length: 12 }).map((_, index) => (
@@ -84,7 +93,7 @@ export default function MobileSideMenu() {
                                     ))
                                 ) : (
                                     albums.map((album) => (
-                                        <a href={`/albums/${album._id}`} key={album._id}>
+                                        <Link onClick={handleMenuOpen} to={`/albums/${album._id}`} key={album._id}>
                                             <div className={`flex items-center gap-x-3 rounded-2xl transition-all duration-300 ease-in-out ${id === album._id ? 'bg-tile p-3' : ''}`}>
                                                 <img
                                                     src={album.coverImageURL}
@@ -96,12 +105,26 @@ export default function MobileSideMenu() {
                                                     <p className="font-medium text-sm text-subheading">Album • {album.artist}</p>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </Link>
                                     ))
                                 )}
                             </div>
                         </ScrollArea>
                     </div>
+                    <Separator className="mb-4" />
+                    <SignedIn>
+                        <SignOutButton>
+                            <Button className="font-medium h-fit py-2.5 rounded-xl w-full bg-primary">Sign out</Button>
+                        </SignOutButton>
+                    </SignedIn>
+
+                    {/* Signature */}
+                    <a target="_blank" href="https://www.linkedin.com/in/prathmesh-gaidhane-9019b022a/">
+                        <p className="font-medium text-sm text-subheading text-center mt-6">
+                            &copy; Designed & Developed by {" "}
+                            <span className="text-primary text-base">PG</span>
+                        </p>
+                    </a>
                 </div>
             </SheetContent>
         </Sheet>
