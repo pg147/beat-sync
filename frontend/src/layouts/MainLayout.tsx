@@ -6,6 +6,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/componen
 
 // Components
 import { FriendsActivity, LeftSideBar } from "@/components";
+import PlaybackControls from "@/components/PlaybackControls";
 
 export default function MainLayout() {
   const isMobile = false;
@@ -35,6 +36,7 @@ export default function MainLayout() {
         </ResizablePanel>
       </ResizablePanelGroup>
 
+      <PlaybackControls />
     </div>
   )
 }
