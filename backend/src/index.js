@@ -12,7 +12,7 @@ import connectDB from "./db/db.js";
 
 // .env config
 dotenv.config({
-    path: '.env.local'
+    path: process.env.NODE_ENV === 'development' ? '.env.local' : '.env.production'
 });
 
 const app = express();  // express app
@@ -23,7 +23,7 @@ app.use(express.json());
 
 // Middleware for cors
 app.use(cors({
-    origin: process.env.ALLOWED_ORIGIN,
+    origin: process.env.NODE_ENV === 'development' ? process.env.ALLOWED_ORIGIN : ['https://beatsync.fun', 'https://www.beatsync.fun'],
     credentials: true
 }))
 
