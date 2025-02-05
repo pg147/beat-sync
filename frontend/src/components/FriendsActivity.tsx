@@ -11,8 +11,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 // Libs / utils
 import { avatarFallback } from "@/lib/utils";
 
-// User Store
+// Global Store
 import { useUserStore } from "@/store/useUserStore";
+import { usePlayerStore } from "@/store/usePlayerStore";
 
 // Skeleton
 import UsersSkeleton from "./skeletons/UsersSkeleton";
@@ -22,6 +23,7 @@ import { HeadsetIcon, MusicNote03Icon, Sad02Icon, SleepingIcon } from "hugeicons
 
 export default function FriendsActivity() {
   const { fetchUsers, users, isLoading } = useUserStore();
+  const { currentSong } = usePlayerStore();
   const { user } = useUser();
   const isPlaying = false;
 
@@ -91,7 +93,7 @@ export default function FriendsActivity() {
                   {/* Song details */}
                   <div className="flex items-center gap-x-2 text-subheading">
                     {isPlaying ? <MusicNote03Icon className="size-4 text-primary" /> : <SleepingIcon className="size-4 text-subheading"/>}
-                    <p className="text-sm">{isPlaying ? `Rahi Chauhan - Taylor Swift` : `Sleeping`}</p>
+                    <p className="text-sm">{isPlaying ? `${currentSong?.title} - ${currentSong?.artist}` : `Sleeping`}</p>
                   </div>
                 </div>
               </div>
