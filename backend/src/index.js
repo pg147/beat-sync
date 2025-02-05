@@ -23,7 +23,9 @@ app.use(express.json());
 
 // Middleware for cors
 app.use(cors({
-    origin: process.env.NODE_ENV === 'development' ? process.env.ALLOWED_ORIGIN : ['https://beatsync.fun', 'https://www.beatsync.fun'],
+    origin: 'https://beatsync.fun',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }))
 
