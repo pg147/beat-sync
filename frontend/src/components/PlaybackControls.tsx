@@ -62,7 +62,7 @@ export default function PlaybackControls() {
                 {(window.innerWidth < 768 && currentSong) && <>
                     {/* Song details */}
                     <div className="flex items-center gap-x-3 w-[30%]">
-                        <img src={currentSong?.coverImageURL} alt={currentSong?.title} className="size-20 md:size-16 rounded-xl" />
+                        <img src={currentSong?.coverImageURL} alt={currentSong?.title} className="size-16 rounded-xl" />
                         <div className="hidden md:flex flex-col">
                             <h1 className="font-medium">{currentSong?.title}</h1>
                             <p className="text-subheading font-medium">{currentSong?.artist}</p>
