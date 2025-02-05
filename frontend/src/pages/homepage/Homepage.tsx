@@ -35,7 +35,7 @@ export default function Homepage() {
         <Separator className="my-3 md:my-6" />
       </div>}
 
-      <div className={`font-medium flex flex-col gap-y-4 md:gap-y-6 mt-5 w-full md:px-9 px-5 md:mt-7 mb-48 md:mb-36`}>
+      <div className={`font-medium flex flex-col gap-y-3.5 md:gap-y-6 mt-5 w-full md:px-9 px-5 md:mt-7 mb-48 md:mb-36`}>
         <FeaturedSongs />
         <TrendingSongs />
         <MadeForYouSongs />
