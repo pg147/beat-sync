@@ -35,7 +35,7 @@ export default function MadeForYouSongs() {
             <AudioPlayer />
             <div className="flex flex-col gap-y-4">
                 <div className="flex items-center gap-x-2.5">
-                    <h1 className="font-semibold text-lg md:text-xl">Made For <span className="text-primary">You</span></h1>
+                    <h1 className="font-medium md:font-semibold text-lg md:text-xl">Made For <span className="text-primary">You</span></h1>
                     <FavouriteIcon className="size-5 md:size-6 text-primary" fill="#EB4D7D" />
                 </div>
                 <ScrollArea className="w-full">
@@ -47,8 +47,8 @@ export default function MadeForYouSongs() {
                                     <img src={song.coverImageURL} alt={song.title} className="size-56 aspect-square object-cover rounded-xl" />
                                     <div className={`flex items-center w-full justify-between transition-all duration-300 ease-in-out ${isCurrentSong ? 'px-4' : 'lg:group-hover:px-4'}`}>
                                         <div className="flex flex-col font-medium">
-                                            <h1>{song.title}</h1>
-                                            <p className="text-subheading">{song.artist}</p>
+                                            <h1 className="text-sm md:text-base">{song.title}</h1>
+                                            <p className="text-subheading text-sm md:text-base">{song.artist}</p>
                                         </div>
                                         <PlayButton song={song} />
                                     </div>

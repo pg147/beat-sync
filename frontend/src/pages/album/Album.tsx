@@ -74,7 +74,7 @@ export default function Album() {
                             {isPlaying ? <Pause className="size-7" fill="#FFFFFF" /> : <Play className="size-7" fill="#FFFFFF" />}
                         </Button>
 
-                        <div className="mt-9">
+                        <div className="mt-5 md:mt-9 text-sm md:text-base">
                             {/* Table Headers */}
                             <div className="grid grid-cols-8 md:grid-cols-12 md:px-6 py-3 font-medium text-subheading">
                                 <div className="col-span-1">

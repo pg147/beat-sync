@@ -31,7 +31,7 @@ export default function FeaturedSongs() {
         <div className="w-full">
             <AudioPlayer />
             <div className="flex flex-col gap-y-4">
-                <h1 className="font-semibold text-lg md:text-xl">Featured Songs</h1>
+                <h1 className="font-medium md:font-semibold text-lg md:text-xl">Featured Songs</h1>
                 <ScrollArea className="w-full">
                     <div className="flex w-max gap-x-5">
                         {featuredSongs.map((song) => {
@@ -41,8 +41,8 @@ export default function FeaturedSongs() {
                                     <img src={song.coverImageURL} alt={song.title} className="size-56 aspect-square object-cover rounded-xl" />
                                     <div className={`flex items-center w-full justify-between transition-all duration-300 ease-in-out ${isCurrentSong ? 'px-4' : 'lg:group-hover:px-4'}`}>
                                         <div className="flex flex-col font-medium">
-                                            <h1>{song.title}</h1>
-                                            <p className="text-subheading">{song.artist}</p>
+                                            <h1 className="text-sm md:text-base">{song.title}</h1>
+                                            <p className="text-subheading text-sm md:text-base">{song.artist}</p>
                                         </div>
                                         <PlayButton song={song} />
                                     </div>
